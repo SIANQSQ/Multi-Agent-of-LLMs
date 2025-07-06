@@ -1,0 +1,6 @@
+openai<=0.29.0
+requests>=2.31.0
+PyYAML>=6.0
+qianfan>=1.1.0               # 文心一言官方SDK
+tqdm>=4.66.0                 # 可选：进度条显示
+colorama>=0.4.0              # 可选：彩色输出
