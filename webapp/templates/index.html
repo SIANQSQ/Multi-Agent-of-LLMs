@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多模型智能对话系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1><i class="fas fa-comments"></i>Multi-Agent智能对话系统</h1>
+            <p>基于树状思维链ToT优化生成思路</p>
+        </header>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="input-group">
+                <input type="text" id="topicInput" placeholder="输入讨论主题，例如：如何评价深圳零一学院的破界创生教育理念">
+                <div class="turns-selector">
+                    <label for="turnsInput">轮数:</label>
+                    <input type="number" id="turnsInput" min="1" max="10" value="5">
+                </div>
+                <button id="startButton">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22,2 15,22 11,13 2,9 22,2"/>
+                    </svg>
+                    开始讨论
+                </button>
+            </div>
+
+            <div class="options">
+                <label>
+                    <input type="checkbox" id="autoScroll" checked>
+                    自动滚动到最新消息
+                </label>
+                <button id="styleToggleBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    气泡模式
+                </button>
+            </div>
+
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </div>
+
+        <!-- Discussion Container -->
+        <div class="discussion-container">
+            <div class="discussion-header">
+                <h2>讨论内容</h2>
+                <div class="turn-counter">
+                    <div id="progressSection" style="display: none;">
+                        <span id="progressText">0/0</span>
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="discussion-content">
+                <div id="currentTopic" style="display: none;"></div>
+
+                <div id="emptyState" class="empty-state">
+                    <i class="fas fa-robot"></i>
+                    <p>输入主题开始多模型讨论</p>
+                </div>
+
+                <div id="discussionResults" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-indicator idle">
+                <div id="statusIndicator" class="status-dot"></div>
+                <span id="statusText">未连接</span>
+            </div>
+
+            <div class="model-tags">
+                <span class="tag deepseek">DeepSeek</span>
+                <span class="tag doubao">豆包</span>
+                <span class="tag wenxin">文心一言</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
